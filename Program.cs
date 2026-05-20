@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Threading;
 
 namespace Stopwatch
 {
@@ -6,7 +8,42 @@ namespace Stopwatch
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Menu();
+        }
+
+        static void Menu()
+        {
+            Console.Clear();
+            Console.WriteLine("Iniciando stopwatch");
+            Console.WriteLine("S = Cronômetro em segundos -> 10s = 10 segundos");
+            Console.WriteLine("M = Cronômetro em minutos -> 1m = 1 minuto");
+            Console.WriteLine("0 = Sair");
+
+            Console.WriteLine("------------------------");
+            Console.Write("Em qual tempo deseja contar? ");
+            string data = Console.ReadLine().ToLower();
+            char type = char.Parse(data.Substring(data.Length - 1, 1));
+            int time = int.Parse(data.Substring(0, data.Length - 1));
+
+            Console.WriteLine(type);
+            Console.WriteLine(time);
+        }
+
+        static void Start()
+        {
+            int time = 10;
+            int currentTime = 0;
+
+            while (time != currentTime)
+            {
+                Console.Clear();
+                currentTime++;
+                Console.WriteLine(currentTime);
+                Thread.Sleep(1000);
+            }
+
+            Console.WriteLine("Finalizando stopwatch...");
+            Thread.Sleep(1500);
         }
     }
 }
