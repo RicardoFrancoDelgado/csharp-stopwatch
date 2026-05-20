@@ -25,13 +25,19 @@ namespace Stopwatch
             char type = char.Parse(data.Substring(data.Length - 1, 1));
             int time = int.Parse(data.Substring(0, data.Length - 1));
 
-            Console.WriteLine(type);
-            Console.WriteLine(time);
+            int multiplier = 1;
+
+            if (type == 'm')
+                multiplier = 60;
+
+            if (time == 0)
+                System.Environment.Exit(0);
+
+            Start(time * multiplier);
         }
 
-        static void Start()
+        static void Start(int time)
         {
-            int time = 10;
             int currentTime = 0;
 
             while (time != currentTime)
@@ -44,6 +50,7 @@ namespace Stopwatch
 
             Console.WriteLine("Finalizando stopwatch...");
             Thread.Sleep(1500);
+            Menu();
         }
     }
 }
